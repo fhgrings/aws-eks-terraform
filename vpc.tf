@@ -2,7 +2,10 @@ resource "aws_vpc" "eks_vpc" {
   cidr_block           = "10.0.0.0/16"
   enable_dns_hostnames = true
   enable_dns_support   = true
-  tags = {
-    Name = "aws-eks-terraform"
-  }
+  tags = merge(
+    local.tags,
+    {
+      Name = "aws-eks-terraform"
+    }
+  )
 }
